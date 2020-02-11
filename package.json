@@ -1,0 +1,26 @@
+{
+  "name": "programming-book",
+  "version": "1.0.0",
+  "description": "Comprehensive collection of programming styles using a simple computational task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asaleh267/exercises-in-programming-style.git"
+  },
+  "author": "Aseel Saleh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asaleh267/exercises-in-programming-style/issues"
+  },
+  "homepage": "https://github.com/asaleh267/exercises-in-programming-style#readme",
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@types/node": "^13.7.0",
+    "fs": "0.0.1-security"
+  }
+}

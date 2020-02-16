@@ -1,4 +1,4 @@
-#Constraints
+Constraints
 - No named abstractions (i.e. no methods/functions)
 - No, or little, use of libraries
  

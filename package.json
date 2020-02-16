@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@types/node": "^13.7.0",
+    "event-stream": "^4.0.1",
     "fs": "0.0.1-security"
   }
 }

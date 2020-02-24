@@ -51,9 +51,9 @@ function sort(words_count: [string, number][]) {
     return words_count;
 }
 
-function main() {
+function main(filePath: string) {
     try {
-        let count_word = sort(frequancies(removeStopWords(extractWords('../data\\dummy_data.txt'))));
+        let count_word = sort(frequancies(removeStopWords(extractWords(filePath))));
         assert!((count_word instanceof Array), "Not an array")
         for (let index = 0; index < count_word.length && index < 25; index++) {
             console.log(count_word[index]);
@@ -64,4 +64,16 @@ function main() {
     }
 }
 
-main();
+//main();
+
+//This is a valid test it will run 
+console.log('Valid file');
+main('../data\\dummy_data.txt');
+
+//This is not a valid test it will produce an error 
+console.log('Invalid file');
+main('../data\\file.txt');
+
+//Empty file will result the assert to stop the execution 
+main('');
+

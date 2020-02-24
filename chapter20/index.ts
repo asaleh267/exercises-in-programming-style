@@ -17,7 +17,7 @@ function removeStopWord(words: string[]) {
         return [];
     let stopwords;
     try {
-        stopwords = fs.readFileSync('../data\\stop_words.txt').toString().split(" ");
+        stopwords = fs.readFileSync('../data\\stop_words.txt').toString().split(",");
     } catch{
         console.log("error opening the stop words file")
         return words;

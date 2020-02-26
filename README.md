@@ -9,5 +9,7 @@ Change the directory to the folder needed to be run
 
 Run the code
 ### `tsc index.ts`
+
+You will get the output on terminal with these command lines
 ### `parcel index.ts --target=node`
 ### `node dist/index.js`

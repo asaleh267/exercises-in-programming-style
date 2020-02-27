@@ -76,9 +76,11 @@ class StopWordFilter {
 class WordFrequencyCounter {
     eventManager;
     wordFreq: {};
+    top25: [string, any][];
     constructor(eventManager) {
         this.wordFreq = {};
         this.eventManager = eventManager;
+        this.top25 = [];
         this.eventManager.subscribe('valid_word', this.incrementCount.bind(this));
         this.eventManager.subscribe('print', this.printFreq.bind(this));
     }
@@ -95,7 +97,36 @@ class WordFrequencyCounter {
             return b[1] - a[1];
         });
         for (let index = 0; index < 25; index++) {
-            console.log(arr[index]);
+            this.top25.push(arr[index]);
+        }
+        console.log(this.top25);
+    }
+}
+
+class WordsWithZ {
+    eventManager;
+    dataStorage;
+    wordFrequencyCounter;
+    wordsWithZ: [string: number][];
+    constructor(event_manager, dataStorage, wordFrequencyCounter) {
+        this.dataStorage = dataStorage
+        this.wordFrequencyCounter = wordFrequencyCounter;
+        this.wordsWithZ = [];
+        this.eventManager = event_manager;
+        this.eventManager.subscribe('print', this.printWordsWithZ.bind(this))
+    }
+    printWordsWithZ(event) {
+        let top25Words = this.wordFrequencyCounter.top25;
+        for (let index = 0; index < top25Words.length; index++) {
+            if (top25Words[index][0].indexOf('z') !== -1) {
+                this.wordsWithZ.push(top25Words[index]);
+            }
+        }
+        if (this.wordsWithZ.length === 0) {
+            console.log('no words with z');
+        } else {
+            console.log('Words with z');
+            console.log(this.wordsWithZ);
         }
     }
 }
@@ -118,9 +149,11 @@ class WordFrequencyApp {
 }
 
 let eventManager = new EventMenager();
-new DataStorage(eventManager);
-new StopWordFilter(eventManager);
-new WordFrequencyCounter(eventManager);
-new WordFrequencyApp(eventManager);
+let dataStorage = new DataStorage(eventManager);
+let stopWordFilter = new StopWordFilter(eventManager);
+let wordFrequencyCounter = new WordFrequencyCounter(eventManager);
+let app = new WordFrequencyApp(eventManager);
+let wordsWithZ = new WordsWithZ(eventManager, dataStorage, wordFrequencyCounter);
 
 eventManager.publish(["run", "../data\\dummy_data.txt"]);
+

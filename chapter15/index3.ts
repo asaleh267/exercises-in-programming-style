@@ -64,7 +64,7 @@ class DataStorage {
     produceWords(event) {
         let str = this.data.split(' ');
         let index = 0;
-        for (index < str.length; index++) {
+        for (index < str.length; index++;) {
             this.eventManager.publish(['word', str[index]]);
         }
         this.eventManager.publish(['word', str[index], "unsubscribe"]);
@@ -133,7 +133,7 @@ class WordFrequencyCounter {
     }
     printFreq() {
         let arr = Object.entries(this.wordFreq).sort((a, b) => {
-            return b[1] - a[1];
+            return Number(b[1]) - Number(a[1]);
         });
         for (let index = 0; index < 25; index++) {
             console.log(arr[index]);

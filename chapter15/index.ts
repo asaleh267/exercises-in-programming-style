@@ -92,7 +92,7 @@ class WordFrequencyCounter {
     }
     printFreq() {
         let arr = Object.entries(this.wordFreq).sort((a, b) => {
-            return b[1] - a[1];
+            return Number(b[1]) - Number(a[1]);
         });
         for (let index = 0; index < 25; index++) {
             console.log(arr[index]);

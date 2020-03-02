@@ -55,7 +55,7 @@ class StopWordFilter {
     stopWords;
 
     constructor(eventManager) {
-        this.stopWords = []
+        this.stopWords = [];
         this.eventManager = eventManager;
         this.eventManager.subscribe('load', this.load.bind(this));
         this.eventManager.subscribe('word', this.isStopWord.bind(this));
@@ -94,7 +94,7 @@ class WordFrequencyCounter {
     }
     printFreq() {
         let arr = Object.entries(this.wordFreq).sort((a, b) => {
-            return b[1] - a[1];
+            return Number(b[1]) - Number(a[1]);
         });
         for (let index = 0; index < 25; index++) {
             this.top25.push(arr[index]);
@@ -107,15 +107,16 @@ class WordsWithZ {
     eventManager;
     dataStorage;
     wordFrequencyCounter;
-    wordsWithZ: [string: number][];
+    wordsWithZ: [string, number][];
+
     constructor(event_manager, dataStorage, wordFrequencyCounter) {
         this.dataStorage = dataStorage
         this.wordFrequencyCounter = wordFrequencyCounter;
         this.wordsWithZ = [];
         this.eventManager = event_manager;
-        this.eventManager.subscribe('print', this.printWordsWithZ.bind(this))
+        this.eventManager.subscribe('print', this.printWordsWithZ.bind(this));
     }
-    printWordsWithZ(event) {
+    printWordsWithZ() {
         let top25Words = this.wordFrequencyCounter.top25;
         for (let index = 0; index < top25Words.length; index++) {
             if (top25Words[index][0].indexOf('z') !== -1) {

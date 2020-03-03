@@ -21,7 +21,11 @@
   },
   "dependencies": {
     "@types/node": "^13.7.0",
+    "assert": "^2.0.0",
     "event-stream": "^4.0.1",
-    "fs": "0.0.1-security"
-  }
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.15",
+    "node-worker-threads-pool": "^1.1.2",
+    "queue-typescript": "^1.0.1"
+    }
 }
